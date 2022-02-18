@@ -1,0 +1,53 @@
+/* Global Styles*/
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: steelblue;
+    overflow: hidden;
+}
+
+/* Main Screen Styles */
+.main-screen {
+    margin: 15% auto;
+    width: 550px;
+    height: 600px;
+}
+
+.main-screen h1 {
+    color: white;
+    font-size: 5em;
+    font-family: "Courier New", serif;
+    text-align: center;
+}
+
+.option3x3, .option5x5 {
+    position: relative;
+    left: 23%;
+    top: 30%;
+    margin-left: 25px;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: aquamarine;
+    cursor: pointer;
+}
+
+/* Game Screen Styles */
+.board {
+    display: none;
+    grid-gap: 10px;
+    margin: 10% auto;
+    width: 550px;
+    height: 600px;
+}
+
+.back-button {
+    display: none;
+    position: absolute;
+    border-style: none;
+    cursor: pointer;
+    padding: 50px;
+    top: 0;
+    left: 0;
+    background: url("../icons/back-arrow.svg") center no-repeat transparent;
+}
