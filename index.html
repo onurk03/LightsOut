@@ -9,14 +9,24 @@
     <script defer src="scripts/index.js"></script>
 </head>
 <body>
+    <!-- Main Screen -->
     <div class="main-screen">
         <h1> Lights Out </h1>
-        <button type="button" class="option3x3"> 3x3 </button>
-        <button type="button" class="option5x5"> 5x5 </button>
+        <span class="button-container">
+            <button class="option3x3"> 3x3 </button>
+            <button class="option5x5"> 5x5 </button>
+        </span>
     </div>
-    <!-- Container for the cells/lights -->
-    <input type="button" class="back-button"/>
-    <div class="board">
+    <!-- Game Screen -->
+    <div class="game-screen">
+        <input type="button" class="back-button"/>
+        <div class="board">
+        </div>
+        <span class="game-button-container">
+            <button class="reset-button"> Reset </button>
+            <button class="solve-button"> Show Solution </button>
+        </span>
+        <h2> Congratulations, You Won! </h2>
     </div>
 </body>
 </html>

@@ -2,52 +2,90 @@
 html, body {
     margin: 0;
     padding: 0;
+    width: 100vw;
+    height: 100vh;
     background-color: steelblue;
     overflow: hidden;
 }
 
 /* Main Screen Styles */
 .main-screen {
-    margin: 15% auto;
-    width: 550px;
-    height: 600px;
+    position: relative;
+    top: 25vh;
+    width: 100vw;
+    height: 80vh;
 }
 
 .main-screen h1 {
     color: white;
-    font-size: 5em;
+    font-size: 6em;
     font-family: "Courier New", serif;
     text-align: center;
 }
+.button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-.option3x3, .option5x5 {
-    position: relative;
-    left: 23%;
-    top: 30%;
-    margin-left: 25px;
+.option3x3, .option5x5   {
+    text-align: center;
     width: 100px;
     height: 50px;
-    border-radius: 10px;
+    margin: 100px;
+    border-radius: 0 10px;
     background-color: aquamarine;
     cursor: pointer;
 }
 
 /* Game Screen Styles */
-.board {
+.game-screen {
     display: none;
+}
+
+.game-screen h2 {
+    display: none;
+    text-align: center;
+    color: white;
+    font-size: 3em;
+    font-family: "Courier New", serif;
+}
+
+.game-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.reset-button, .solve-button {
+    text-align: center;
+    width: 100px;
+    height: 50px;
+    margin: 100px;
+    border-radius: 10px;
+    background-color: aquamarine;
+    cursor: pointer;
+}
+
+.board {
     grid-gap: 10px;
-    margin: 10% auto;
-    width: 550px;
-    height: 600px;
+    margin: 13% auto 0;
+    width: 500px;
+    height: 500px;
 }
 
 .back-button {
-    display: none;
     position: absolute;
+    margin: 20px;
     border-style: none;
     cursor: pointer;
     padding: 50px;
     top: 0;
     left: 0;
     background: url("../icons/back-arrow.svg") center no-repeat transparent;
+}
+
+@media only screen and (max-width: 700px) {
+    .board {
+        margin-top: 25%;
+    }
 }
