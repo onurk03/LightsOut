@@ -8,6 +8,9 @@ let choice5x5 = document.querySelector(".option5x5");
 let backButton = document.querySelector(".back-button");
 let resetButton = document.querySelector(".reset-button");
 let solveButton = document.querySelector(".solve-button");
+// Sound effects from Zapsplat.com & SoundBible.com
+let buttonSound = new Audio("sounds/zapsplat__button_click.mp3");
+let winSound = new Audio("sounds/TaDa-SoundBible.mp3");
 
 // If user chooses 3x3 board, generate a 3x3 board and change to the game scene.
 choice3x3.addEventListener('click', function() {
@@ -16,6 +19,7 @@ choice3x3.addEventListener('click', function() {
     board.generateBoard();
     startGame();
     gameScreen.style.display = "block";
+    buttonSound.play();
 });
 
 // If user chooses 5x5 board, generate a 5x5 board and change to the game scene.
@@ -26,6 +30,7 @@ choice5x5.addEventListener('click', function() {
     startGame();
     gameScreen.style.display = "block";
     solveButton.style.display = "none";
+    buttonSound.play();
 });
 
 // Clicking the back button will reload the page to reset any board that might've been generated
@@ -40,11 +45,13 @@ resetButton.addEventListener('click', function () {
     board.generateBoard();
     startGame();
     document.querySelector(".game-screen h2").style.display = "none";
+    buttonSound.play();
 });
 
 // Shows the solution to the board
 solveButton.addEventListener('click', function () {
     board.solveBoard();
+    buttonSound.play();
 });
 
 /**
@@ -75,6 +82,7 @@ function startGame() {
 
                 if(board.checkWin()) {
                     setTimeout(function () {
+                        winSound.play();
                         document.querySelector(".game-screen h2").style.display = "block";
                     }, 100);
                 }
