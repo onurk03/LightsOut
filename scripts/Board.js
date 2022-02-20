@@ -36,8 +36,12 @@ class Board {
         }
     }
 
+    /**
+     * Resets the board array and the cell count to generate a new board.
+     */
     resetBoard() {
         this.boardArray = [];
+        Cell.count = 0;
         for(let i = 0; i < this.rows; i++) {
             this.boardArray.push([]);
             for(let j = 0; j < this.cols; j++) {
@@ -61,4 +65,83 @@ class Board {
         return true;
     }
 
+    /**
+     * Solves the 3x3 Lights Out system using a matrix and a vector.
+     */
+    solveBoard() {
+        // Inverse of a matrix representing the result of button presses for a 3x3 matrix.
+        let matrixA = math.boolean([
+            [1, 0, 1, 0, 0, 1, 1, 1, 0],
+            [0, 0, 0, 0, 1, 0, 1, 1, 1],
+            [1, 0, 1, 1, 0, 0, 0, 1, 1],
+            [0, 0, 1, 0, 1, 1, 0, 0, 1],
+            [0, 1, 0, 1, 1, 1, 0, 1, 0],
+            [1, 0, 0, 1, 1, 0, 1, 0, 0],
+            [1, 1, 0, 0, 0, 1, 1, 0, 1],
+            [1, 1, 1, 0, 1, 0, 0, 0, 0],
+            [0, 1, 1, 1, 0, 0, 1, 0, 1]
+        ]);
+
+
+        // Vector representing the lights that are ON inside the board.
+        let vector = [];
+        for(let i = 0; i < this.rows; i++) {
+            for(let j = 0; j < this.cols; j++) {
+                if(this.boardArray[i][j].cellState === 1) {
+                    vector[this.boardArray[i][j].cellNo - 1] = 1;
+                } else {
+                    vector[this.boardArray[i][j].cellNo - 1] = 0;
+                }
+            }
+        }
+        vector = math.boolean(vector);
+        console.log(math.inv(matrixA));
+
+        // Boolean matrix multiplication is done to create a vector representing which button
+        // presses will turn off all lights.
+        let matrixSolution = matrixMultiply(matrixA, vector);
+        console.log(matrixSolution);
+
+        // Multiplies
+        let k = 0;
+        for(let i = 0; i < this.rows; i++) {
+            for(let j = 0; j < this.cols; j++) {
+                if(matrixSolution[k] === 1) {
+                    this.boardArray[i][j].highlightCell();
+                }
+                k++;
+            }
+        }
+    }
 }
+
+/**
+ *
+ * @param matrix The inverse matrix representing the results of each button press on a Lights
+ *               Out board.
+ * @param vector Vector representing which lights are ON inside the board.
+ * @returns {*[]} vector representing the lights to turn off for completing a Lights Out board.
+ *                (1 --> click, 0 --> don't click)
+ */
+function matrixMultiply(matrix, vector) {
+    let result = [];
+    for(let i = 0; i < matrix.length; i++) {
+        let multi = [];
+        let k = 0;
+        for(let j = 0; j < matrix[i].length; j++) {
+            if(matrix[i][j] && vector[k]) {
+                multi.push(1);
+            } else {
+                multi.push(0);
+            }
+            k++;
+        }
+        let add = multi[0];
+        for(let i = 1; i < multi.length; i++) {
+            add = add ^ multi[i];
+        }
+        result.push(add);
+    }
+    return result;
+}
+

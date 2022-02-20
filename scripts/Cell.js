@@ -25,6 +25,7 @@ class Cell {
 
         this.getCell().style.width = "100%";
         this.getCell().style.height = "100%";
+        this.getCell().style.border = "solid 5px";
     }
 
     /**
@@ -58,5 +59,13 @@ class Cell {
     getCell() {
         return document.querySelector(`.cell${this.cellNo}`);
     }
+
+    /**
+     * Highlights the Cell's border in red to indicate that it's a solution.
+     */
+    highlightCell() {
+        this.getCell().style.borderColor = "red";
+    }
+
 }
 

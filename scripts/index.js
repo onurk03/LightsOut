@@ -7,6 +7,7 @@ let choice3x3 = document.querySelector(".option3x3");
 let choice5x5 = document.querySelector(".option5x5");
 let backButton = document.querySelector(".back-button");
 let resetButton = document.querySelector(".reset-button");
+let solveButton = document.querySelector(".solve-button");
 
 // If user chooses 3x3 board, generate a 3x3 board and change to the game scene.
 choice3x3.addEventListener('click', function() {
@@ -24,6 +25,7 @@ choice5x5.addEventListener('click', function() {
     board.generateBoard();
     startGame();
     gameScreen.style.display = "block";
+    solveButton.style.display = "none";
 });
 
 // Clicking the back button will reload the page to reset any board that might've been generated
@@ -40,6 +42,10 @@ resetButton.addEventListener('click', function () {
     document.querySelector(".game-screen h2").style.display = "none";
 });
 
+// Shows the solution to the board
+solveButton.addEventListener('click', function () {
+    board.solveBoard();
+});
 
 /**
  * Adds event listeners to all cells to perform the operation for turning lights on/off.
@@ -51,6 +57,9 @@ function startGame() {
 
             cell.getCell().addEventListener('click', function () {
                 cell.flipState();
+                if(cell.getCell().style.borderColor === "red") {
+                    cell.getCell().style.borderColor = "black";
+                }
                 if (cell.row + 1 < board.boardArray.length) {
                     board.boardArray[cell.row + 1][cell.col].flipState();
                 }
