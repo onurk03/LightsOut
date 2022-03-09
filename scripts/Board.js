@@ -102,7 +102,6 @@ class Board {
         let matrixSolution = matrixMultiply(matrixA, vector);
         console.log(matrixSolution);
 
-        // Multiplies
         let k = 0;
         for(let i = 0; i < this.rows; i++) {
             for(let j = 0; j < this.cols; j++) {
