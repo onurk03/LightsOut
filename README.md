@@ -7,4 +7,4 @@
 
 This browser game was made for WebHacks Spring 2022 hackathon and won 4th place.
 
-https://onurk03.github.io/LightsOut/
+--> https://onurk03.github.io/LightsOut/ <--
