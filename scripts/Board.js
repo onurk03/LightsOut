@@ -95,12 +95,11 @@ class Board {
             }
         }
         vector = math.boolean(vector);
-        console.log(math.inv(matrixA));
+        math.inv(matrixA);
 
         // Boolean matrix multiplication is done to create a vector representing which button
         // presses will turn off all lights.
         let matrixSolution = matrixMultiply(matrixA, vector);
-        console.log(matrixSolution);
 
         let k = 0;
         for(let i = 0; i < this.rows; i++) {
